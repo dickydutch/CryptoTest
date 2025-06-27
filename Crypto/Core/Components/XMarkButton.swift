@@ -9,17 +9,17 @@ import SwiftUI
 
 struct XMarkButton: View {
     
-    @Environment(\.presentationMode) var presentationMode
+    let dismiss: DismissAction
     
     var body: some View {
-        Button(action: {
-            presentationMode.wrappedValue.dismiss()
-        }, label: {
+        Button(action: { dismiss() },
+               label: {
             Image(systemName: "xmark")
                 .font(.headline)
-        })    }
+        })
+    }
 }
 
-#Preview {
-    XMarkButton()
-}
+//#Preview {
+//    XMarkButton()
+//}

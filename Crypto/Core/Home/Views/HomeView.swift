@@ -18,10 +18,10 @@ struct HomeView: View {
             // Background Layer
             Color.theme.background
                 .ignoresSafeArea()
-                .sheet(isPresented: $showPortfolioView) {
+                .sheet(isPresented: $showPortfolioView, content: {
                     PortfolioView()
                         .environmentObject(vm)
-                }
+                })
             
             // Content Layer
             VStack {
