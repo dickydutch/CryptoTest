@@ -46,11 +46,6 @@ struct HomeView: View {
             }
             .sheet(isPresented: $showSettingsView, content:  { SettingsView() })
         }
-        .background(
-            NavigationLink(destination: DetailLoadingView(coin: $selectedCoin),
-                           isActive: $showDetailView,
-                           label: {EmptyView()})
-        )
     }
 }
 
@@ -87,11 +82,11 @@ extension HomeView {
     private var allCoinsList: some View {
         List {
             ForEach(vm.allCoins) { coin in
-                CoinRowView(coin: coin, showHoldingsColumn: false)
+                NavigationLink(
+                    destination: { DetailLoadingView(coin: coin) },
+                    label: { CoinRowView(coin: coin, showHoldingsColumn: false) }
+                )
                     .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
-                    .onTapGesture {
-                        segue(coin: coin)
-                    }
             }
         }
         .listStyle(.plain)
@@ -103,22 +98,18 @@ extension HomeView {
     private var portfolioCoinsList: some View {
         List {
             ForEach(vm.portfolioCoins) { coin in
-                CoinRowView(coin: coin, showHoldingsColumn: true)
+                NavigationLink(
+                    destination: { DetailLoadingView(coin: coin) },
+                    label: { CoinRowView(coin: coin, showHoldingsColumn: true) }
+                )
+
                     .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
-                    .onTapGesture {
-                        segue(coin: coin)
-                    }
             }
         }
         .listStyle(.plain)
         .refreshable {
             vm.reloadData()
         }
-    }
-    
-    private func segue(coin: CoinModel) {
-        selectedCoin = coin
-        showDetailView.toggle()
     }
     
     private var columnTitles: some View {

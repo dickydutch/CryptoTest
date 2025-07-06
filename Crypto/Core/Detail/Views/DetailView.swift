@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct DetailLoadingView: View {
-    @Binding var coin: CoinModel?
+    var coin: CoinModel?
     
     var body: some View {
         ZStack {
             if let coin = coin {
                 DetailView(coin: coin)
             }
+
         }
     }
 }
