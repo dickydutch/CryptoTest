@@ -68,15 +68,15 @@ extension CoinRowView {
     }
 }
 
-struct CoinRowView_Previews: PreviewProvider {
-    static var previews: some View  {
-        Group {
-            CoinRowView(coin: dev.coin, showHoldingsColumn: true)
-                .previewLayout(.sizeThatFits)
-            CoinRowView(coin: dev.coin, showHoldingsColumn: true)
-                .previewLayout(.sizeThatFits)
-                .preferredColorScheme(.dark)
-        }
-    }
+#Preview(traits: .sizeThatFitsLayout) {
+    CoinRowView(coin: DeveloperPreview.instance.coin, showHoldingsColumn: true)
+        .preferredColorScheme(.light)
 }
+
+#Preview(traits: .sizeThatFitsLayout) {
+    CoinRowView(coin: DeveloperPreview.instance.coin, showHoldingsColumn: true)
+        .preferredColorScheme(.dark)
+
+}
+
 
