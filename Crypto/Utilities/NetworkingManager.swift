@@ -25,7 +25,9 @@ class NetworkingManager {
     }
     
     static func download(url: URL) -> AnyPublisher<Data,Error> {
-        return URLSession.shared.dataTaskPublisher(for: url)
+        var request = URLRequest(url: url)
+        request.addValue("CG-DbirwUsuHWJr2xAYBWsoJrUQ", forHTTPHeaderField: "x-cg-demo-api-key")
+        return URLSession.shared.dataTaskPublisher(for: request)
             .subscribe(on: DispatchQueue.global(qos: .default))
             .tryMap({ try handleURLResponse(output: $0, url: url) })
             .receive(on: DispatchQueue.main)
