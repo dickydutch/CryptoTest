@@ -36,12 +36,13 @@ struct SearchBarView: View {
         }
         .font(.headline)
         .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 25)
-                .fill(Color.theme.background)
-                .shadow(color: Color.theme.accent.opacity(0.15),
-                        radius: 10, x:0, y:0)
-        )
+        .glassEffect()
+//        .background(
+//            RoundedRectangle(cornerRadius: 25)
+//                .fill(Color.theme.background)
+//                .shadow(color: Color.theme.accent.opacity(0.15),
+//                        radius: 10, x:0, y:0)
+//        )
     }
 }
 

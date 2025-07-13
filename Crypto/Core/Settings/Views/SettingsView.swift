@@ -18,20 +18,32 @@ struct SettingsView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                swiftfulThinkingSection
-                coinGeckoSection
-                developerSection
-                applicationSection
+            ZStack {
+                // background
+                
+                // content
+                List {
+                    swiftfulThinkingSection
+                        .listRowBackground(Color.clear)
+                    coinGeckoSection
+                        .listRowBackground(Color.clear)
+                    developerSection
+                        .listRowBackground(Color.clear)
+                    applicationSection
+                        .listRowBackground(Color.clear)
+
+                }
+                .scrollContentBackground(.hidden)
             }
             .tint(.blue)
-            .listStyle(.grouped )
+            .listStyle(.grouped)
             .navigationTitle("Settings")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     XMarkButton(dismiss: dismiss)
                 }
             }
+            .toolbarBackground(.hidden)
         }
     }
 }

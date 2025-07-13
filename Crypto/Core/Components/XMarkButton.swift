@@ -12,11 +12,13 @@ struct XMarkButton: View {
     let dismiss: DismissAction
     
     var body: some View {
-        Button(action: { dismiss() },
-               label: {
+        Button {
+            dismiss()
+        } label: {
             Image(systemName: "xmark")
                 .font(.headline)
-        })
+        }
+        .glassEffect()
     }
 }
 

@@ -9,24 +9,29 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ZStack {
-            Color.theme.background
-                .ignoresSafeArea()
-            VStack(spacing: 40) {
-                Text("Accent Color")
-                    .foregroundStyle(Color.theme.accent)
-                
-                Text("Secondary Text Color")
-                    .foregroundStyle(Color.theme.secondaryText)
-                
-                Text("Red Color")
-                    .foregroundStyle(Color.theme.red)
-                
-                Text("Green Color")
-                    .foregroundStyle(Color.theme.green)
+        VStack {
+            Text("Sample Text")
+                .padding()
+                .glassEffect(.regular.interactive(), in: .capsule)
+            Spacer()
+            TabView {
+                Tab("Tab 1", systemImage: "1.circle") {
+                    List(0..<100) { i in
+                        Text("Row \(i)")
+                    }
+                }
+
+                Tab("Tab 2", systemImage: "2.circle") {
+                    Text("Tab 2")
+                }
             }
-            .font(.headline)
+            .tabViewBottomAccessory {
+                Text("Hello, world!")
+            }
+            .tabBarMinimizeBehavior(.onScrollDown)
         }
+        .padding()
+        .background(Color.blue)
     }
 }
 

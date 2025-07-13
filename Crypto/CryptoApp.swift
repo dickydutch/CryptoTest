@@ -15,6 +15,8 @@ struct CryptoApp: App {
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor : UIColor(Color.theme.accent)]
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor : UIColor(Color.theme.accent)]
+//        UIListContentView.appearance().backgroundColor = .clear
+        UITableView.appearance().backgroundColor = .clear
 
     }
     

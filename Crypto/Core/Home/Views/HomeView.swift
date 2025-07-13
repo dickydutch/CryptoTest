@@ -19,7 +19,10 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             // Background Layer
-            Color.theme.background
+
+//            Color.theme.background
+            LinearGradient(colors: [Color.red, Color.blue, Color.purple], startPoint: .topLeading, endPoint: .bottomTrailing)
+                .opacity(0.8)
                 .ignoresSafeArea()
                 .sheet(isPresented: $showPortfolioView, content: {
                     PortfolioView()
@@ -44,7 +47,12 @@ struct HomeView: View {
                 }
                 Spacer(minLength: 0)
             }
-            .sheet(isPresented: $showSettingsView, content:  { SettingsView() })
+            .sheet(isPresented: $showSettingsView, content:  {
+                SettingsView()
+                    .scrollContentBackground(.hidden)
+                    .presentationDetents([.medium, .large])
+                    .presentationBackground(.ultraThinMaterial)
+            })
         }
     }
 }
@@ -64,6 +72,8 @@ extension HomeView {
 
             Spacer()
             Text(showPortfolio ? "Portfolio" : "Live Prices")
+                .padding()
+                .glassEffect(.regular, in: .capsule)
                 .font(.headline)
                 .fontWeight(.heavy)
                 .foregroundStyle(Color.theme.accent)
@@ -74,7 +84,6 @@ extension HomeView {
                     withAnimation {
                         showPortfolio.toggle()
                     }
-                    
                 }
         }
         .padding(.horizontal)
@@ -85,9 +94,10 @@ extension HomeView {
             ForEach(vm.allCoins) { coin in
                 NavigationLink(
                     destination: { DetailLoadingView(coin: coin) },
-                    label: { CoinRowView(coin: coin, showHoldingsColumn: false) }
+                    label: { CoinRowView(coin: coin, showHoldingsColumn: false)}
                 )
                     .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                    .listRowBackground(Color.clear)
             }
         }
         .listStyle(.plain)
@@ -105,6 +115,7 @@ extension HomeView {
                 )
 
                     .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                    .listRowBackground(Color.clear)
             }
         }
         .listStyle(.plain)
