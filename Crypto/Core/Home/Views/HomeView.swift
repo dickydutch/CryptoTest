@@ -61,16 +61,17 @@ extension HomeView {
                         showSettingsView.toggle()
                     }
                 }
+
             Spacer()
             Text(showPortfolio ? "Portfolio" : "Live Prices")
                 .font(.headline)
                 .fontWeight(.heavy)
                 .foregroundStyle(Color.theme.accent)
             Spacer()
-            CircleButtonView(iconName: "chevron.right")
-                .rotationEffect(Angle(degrees: showPortfolio ? 180 : 0))
+            CircleButtonView(iconName: showPortfolio ? "chevron.left" : "chevron.right")
+//                .rotationEffect(Angle(degrees: showPortfolio ? 180 : 0))
                 .onTapGesture {
-                    withAnimation(.spring()) {
+                    withAnimation {
                         showPortfolio.toggle()
                     }
                     
